@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuong trinh tuong tac Cong tac va Bong </title>
+</head>
+<body>
+<h5>Chuong trinh tuong tac Cong tac va Bong</h5>
+<button onclick="Execute()">Start</button>
+<script>
+    let ElectricLamp = function () {
+        this.status = null;
+        this.turnOff = function () {
+            alert('Lamp den tat ! ');
+            console.log('Lamp den tat ! ');
+            this.status = false;
+        };
+        this.turnOn = function () {
+            alert('Lamp den sang ! ');
+            console.log('Lamp den sang ! ');
+            this.status = true;
+        };
+
+    };
+    let SwitchButton = function () {
+        this.status = null;
+        this.lamp = null;
+        this.connectToLamp = function (Electric) {
+            if(this.status){
+                Electric.turnOn();
+            }
+            else {
+                Electric.turnOff();
+            }
+
+        };
+        this.switchOff = function () {
+            this.status = false;
+        };
+        this.switchOn = function () {
+            this.status = true;
+        }
+    };
+    function Execute() {
+            let firstLap = new ElectricLamp();
+            let switchButton = new SwitchButton();
+            switchButton.lamp = firstLap;
+        for( let i = 0; i <10 ; i ++){
+            if( (i%2)==0) {
+                switchButton.switchOn();
+                switchButton.connectToLamp(switchButton.lamp);
+                console.log('lan thu ' + eval(i+1) );
+            }
+            else {
+                switchButton.switchOff();
+                switchButton.connectToLamp(switchButton.lamp);
+                console.log('lan thu ' + eval(i+1));
+            }
+
+        }
+    }
+</script>
+</body>
+</html>
